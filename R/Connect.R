@@ -302,7 +302,7 @@ connect <- function(connectionDetails = NULL,
     } else if (connectionDetails$dbms == "duckdb") {
       connectDuckdb(connectionDetails)
     } else if (connectionDetails$dbms == "clickhouse") {
-      connectClickhouse()(connectionDetails)
+      connectClickhouse(connectionDetails)
     } else if (connectionDetails$dbms == "spark" && is.null(connectionDetails$connectionString())) {
       connectSparkUsingOdbc(connectionDetails)
     } else {
@@ -898,7 +898,7 @@ connectDuckdb <- function(connectionDetails) {
 
 connectClickhouse <- function(connectionDetails) {
   inform("Connecting using ClickHouse driver")
-  ensure_installed("RClickHouse")
+  ensure_installed("RClickhouse")
   connection <- connectUsingDbi(
     createDbiConnectionDetails(
       dbms = connectionDetails$dbms,
