@@ -905,7 +905,7 @@ connectClickhouse <- function(connectionDetails) {
       drv = RClickhouse::clickhouse(),
       host = connectionDetails$server(),
       if (is.null(connectionDetails$port())) {
-        port <- "9000"
+        port <- 9000
       } else {
         port <- connectionDetails$port()
       },
