@@ -177,7 +177,7 @@ getJbcDriverSingleton <- function(driverClass = "", classPath = "") {
 }
 
 checkPathToDriver <- function(pathToDriver, dbms) {
-  if (!is.null(dbms) && dbms %in% c("sqlite", "sqlite extended", "duckdb")) {
+  if (!is.null(dbms) && dbms %in% c("sqlite", "sqlite extended", "clickhouse", "duckdb")) {
     return()
   }
   if (pathToDriver == "") {

@@ -33,6 +33,7 @@ checkIfDbmsIsSupported <- function(dbms) {
     "snowflake",
     "synapse",
     "duckdb",
+    "clickhouse",
     "iris"
   )
   deprecated <- c(
@@ -300,6 +301,8 @@ connect <- function(connectionDetails = NULL,
       connectSqlite(connectionDetails)
     } else if (connectionDetails$dbms == "duckdb") {
       connectDuckdb(connectionDetails)
+    } else if (connectionDetails$dbms == "clickhouse") {
+      connectClickhouse()(connectionDetails)
     } else if (connectionDetails$dbms == "spark" && is.null(connectionDetails$connectionString())) {
       connectSparkUsingOdbc(connectionDetails)
     } else {
@@ -893,6 +896,24 @@ connectDuckdb <- function(connectionDetails) {
   return(connection)
 }
 
+connectClickhouse <- function(connectionDetails) {
+  inform("Connecting using ClickHouse driver")
+  ensure_installed("RClickHouse")
+  connection <- connectUsingDbi(
+    createDbiConnectionDetails(
+      dbms = connectionDetails$dbms,
+      drv = RClickhouse::clickhouse(),
+      host = connectionDetails$host(),
+      port = connectionDetails$port(),
+      db = connectionDetails$db(),
+      user = connectionDetails$user(),
+      password = connectionDetails$password()
+    )
+  )
+  return(connection)
+}
+  
+
 generateRandomString <- function(length = 20) {
   return(paste(sample(c(letters, 0:9), length, TRUE), collapse = ""))
 }
@@ -989,6 +1010,7 @@ dbms <- function(connection) {
     "RedshiftConnection" = "redshift",
     "BigQueryConnection" = "bigquery",
     "SQLiteConnection" = "sqlite",
+    "ClickhouseConnection" = "clickhouse",
     "duckdb_connection" = "duckdb"
     # add mappings from various DBI connection classes to SqlRender dbms here
   )

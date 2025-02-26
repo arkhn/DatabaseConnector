@@ -35,6 +35,14 @@
 #'  - `oracleDriver`. The driver to be used. Choose between "thin" or "oci".
 #'  - `pathToDriver`. The path to the folder containing the Oracle JDBC driver JAR files.
 #' 
+#' ClickHouse:
+#' 
+#'  - `user`. The user name used to access the server
+#'  - `password`. The password for that user
+#'  - `host`. This field contains the hostname.
+#'  - `port`. Specifies the port on the server (default = 9000)
+#'  - `db`. Specifies the database to connect to.
+#' 
 #' Microsoft SQL Server:
 #' 
 #'  - `user`. The user used to log in to the server. If the user is not specified, Windows

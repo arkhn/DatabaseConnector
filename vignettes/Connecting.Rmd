@@ -37,6 +37,7 @@ This vignette describes how you can use the `DatabaseConnector` package to conne
 * (DataBricks)Spark
 * Snowflake
 * Synapse
+* ClickHouse
 * InterSystems IRIS
 
 # Obtaining drivers 
@@ -93,13 +94,14 @@ Note that if we hadn't specified the `DATABASECONNECTOR_JAR_FOLDER` environmenta
 Because of licensing reasons the drivers for BigQuery, Netezza, Impala and InterSystems IRIS are not included but must be obtained by the user. see [these instructions on how to download these drivers](http://ohdsi.github.io/DatabaseConnector/reference/jdbcDrivers.html), which you can also see by typing `?jdbcDrivers`.
 
 
-##  Obtaining drivers for SQLite or DuckDb
+##  Obtaining drivers for SQLite, ClickHouse or DuckDb
 
-For SQLite and DuckDb we actually don't use a JDBC driver. Instead, we use the RSQLite and duckdb packages, respectively, which can be installed using 
+For SQLite, ClickHouse and DuckDb we actually don't use a JDBC driver. Instead, we use the RSQLite, RClickhouse and duckdb packages, respectively, which can be installed using 
 
 ```{r eval=FALSE}
 install.packages("RSQLite")
 install.packages("duckdb")
+install.packages("RClickhouse")
 ```
 
 

@@ -27,6 +27,7 @@ Features
   - IBM Netezza
   - SQLite
   - Spark
+  - ClickHouse
   - InterSystems IRIS
 - Statements for executing queries with 
   - Error reporting to file
