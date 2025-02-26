@@ -897,14 +897,18 @@ connectDuckdb <- function(connectionDetails) {
 }
 
 connectClickhouse <- function(connectionDetails) {
-  inform("Connecting using ClickHouse driver")
+  inform("Connecting using ClickHouse driver (RClickhouse)")
   ensure_installed("RClickhouse")
   connection <- connectUsingDbi(
     createDbiConnectionDetails(
       dbms = connectionDetails$dbms,
       drv = RClickhouse::clickhouse(),
       host = connectionDetails$server(),
-      port = connectionDetails$port(),
+      if (is.null(connectionDetails$port())) {
+        port <- "9000"
+      } else {
+        port <- connectionDetails$port()
+      },
       user = connectionDetails$user(),
       password = connectionDetails$password()
     )
