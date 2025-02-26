@@ -905,7 +905,6 @@ connectClickhouse <- function(connectionDetails) {
       drv = RClickhouse::clickhouse(),
       host = connectionDetails$server(),
       port = connectionDetails$port(),
-      db = connectionDetails$db(),
       user = connectionDetails$user(),
       password = connectionDetails$password()
     )
