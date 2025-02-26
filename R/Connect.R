@@ -277,7 +277,7 @@ connect <- function(connectionDetails = NULL,
                     connectionString = NULL,
                     pathToDriver = Sys.getenv("DATABASECONNECTOR_JAR_FOLDER")) {
   if (missing(connectionDetails) || is.null(connectionDetails)) {
-    # warn("Use of dbms, server, etc. when calling connect() is deprecated. Use connectionDetails instead.")
+    warn("Use of dbms, server, etc. when calling connect() is deprecated. Use connectionDetails instead.")
     connectionDetails <- createConnectionDetails(
       dbms = dbms,
       user = user,
@@ -903,7 +903,7 @@ connectClickhouse <- function(connectionDetails) {
     createDbiConnectionDetails(
       dbms = connectionDetails$dbms,
       drv = RClickhouse::clickhouse(),
-      host = connectionDetails$host(),
+      host = connectionDetails$server(),
       port = connectionDetails$port(),
       db = connectionDetails$db(),
       user = connectionDetails$user(),
